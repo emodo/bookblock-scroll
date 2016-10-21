@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bookblock-scroll</title>
+    <link rel="stylesheet" href="./css/master.css" media="screen" title="no title">
+  </head>
+  <body>
+    <!-- container保证整屏高度是100%  -->
+    <div class="container">
+      <div class="bb-custom-wrapper">
+        <!-- bb-bookblock类设置透视  -->
+        <div id="bb-bookblock" class="bb-bookblock">
+          <!-- 每个bb-item是绝对定位  -->
+          <div class="bb-item">
+            <div class="bb-custom-firstpage"></div>
+            <!-- bb-custom-side是个flex并且宽度为50%的浮动元素去模拟一页  -->
+            <div class="bb-custom-side">
+              <p>Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie.</p>
+            </div>
+          </div>
+          <div class="bb-item">
+            <div class="bb-custom-side">
+              <p>Soufflé tootsie roll jelly beans. Sweet icing croissant dessert bear claw. Brownie dessert cheesecake danish jelly pudding bear claw soufflé.</p>
+            </div>
+            <div class="bb-custom-side">
+              <p>Candy canes lollipop macaroon marshmallow gummi bears tiramisu. Dessert croissant cupcake candy canes. Bear claw faworki faworki lemon drops. Faworki marzipan sugar plum jelly-o marzipan jelly-o.</p>
+            </div>
+          </div>
+          <div class="bb-item">
+            <div class="bb-custom-side">
+              <p>Croissant pudding gingerbread gummi bears marshmallow halvah. Wafer donut croissant. Cookie muffin jelly beans pie croissant croissant candy canes jelly marshmallow.</p>
+            </div>
+            <div class="bb-custom-side">
+              <p>Wafer donut caramels chocolate caramels sweet roll. Gummi bears powder candy chocolate cake gummi bears icing wafer cupcake. Brownie cotton candy pastry chocolate wypas.</p>
+            </div>
+          </div>
+          <div class="bb-item">
+            <div class="bb-custom-side">
+              <p>Marzipan dragée candy canes chocolate cake. Soufflé faworki jelly gingerbread cupcake. Powder gummies applicake.</p>
+            </div>
+            <div class="bb-custom-side">
+              <p>Cotton candy caramels tootsie roll soufflé powder lemon drops carrot cake danish. Cotton candy candy canes fruitcake muffin gingerbread. Jujubes soufflé gingerbread donut donut.</p>
+            </div>
+          </div>
+          <div class="bb-item">
+            <div class="bb-custom-side">
+              <p>Jujubes fruitcake tiramisu liquorice chocolate cake. Carrot cake faworki donut soufflé oat cake tootsie roll. Fruitcake fruitcake cake sweet pie jelly beans. Chocolate cake candy jujubes oat cake toffee croissant muffin.</p>
+            </div>
+            <div class="bb-custom-side">
+              <p>Chocolate bar tiramisu marzipan. Croissant soufflé croissant lollipop liquorice dragée chupa chups carrot cake. Liquorice lollipop halvah toffee lollipop.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/modernizr.min.js"></script>
+    <script src="./js/jquery.mousewheel.min.js"></script>
+    <script src="./js/jquery.bookblock.js"></script>
+    <script type="text/javascript">
+    //INIT
+    $('#bb-bookblock').bookblock({
+      speed: 1000,
+      shadowSides: 0.8,
+      shadowFlip: 0.4,
+      onEndFlip: function(){
+        setTimeout(function(){
+          $('body').on('mousewheel',  onMouseEvent);
+        }, 600)
+      }
+    });
+
+     $('body').on('mousewheel',  onMouseEvent);
+
+    function onMouseEvent(event) {
+      if ( event.deltaY < 0 && event.deltaY >= -1 ) {
+        $('body').unmousewheel(onMouseEvent);
+        $('#bb-bookblock').bookblock('next');
+
+      console.log(event.deltaY, 'down' );
+      } else if (event.deltaY > 0 && event.deltaY <= 1 ) {
+        $('#bb-bookblock').bookblock('prev');
+      $('body').unmousewheel(onMouseEvent);  console.log(event.deltaY, 'up');
+      }
+    }
+    </script>
+  </body>
+</html>
