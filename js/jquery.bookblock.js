@@ -4,7 +4,7 @@
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2013, Codrops
  * http://www.codrops.com
  */
@@ -41,7 +41,7 @@
 	* Copyright 2012 @louis_remi
 	* Licensed under the MIT license.
 	*
-	* This saved you an hour of work? 
+	* This saved you an hour of work?
 	* Send me music http://www.amazon.co.uk/wishlist/HNTU0468LQON
 	*/
 	var $event = $.event,
@@ -168,7 +168,7 @@
 				$( this.options.prevEl ).on( 'click.bookblock touchstart.bookblock', function() { self._action( 'prev' ); return false; } );
 			}
 
-			$window.on( 'debouncedresize', function() {		
+			$window.on( 'debouncedresize', function() {
 				// update width value
 				self.elWidth = self.$el.width();
 			} );
@@ -214,7 +214,7 @@
 			}
 
 			this.$nextItem = !this.options.circular && this.end ? this.$current : this.$items.eq( this.current );
-			
+
 			if ( !this.support ) {
 				this._layoutNoSupport( dir );
 			} else {
@@ -250,7 +250,7 @@
 
 			this.$items.hide();
 			this.$el.prepend( $s_left, $s_middle, $s_right );
-			
+
 			$s_middle.css({
 				transitionDuration: speed + 'ms',
 				transitionTimingFunction : this.options.easing
@@ -297,10 +297,11 @@
 					} : {
 						transition: 'opacity ' + this.options.speed / 2 + 'ms ' + 'linear' + ' ' + this.options.speed / 2 + 'ms'
 					};
-
+				if (self.current != 1) {
+					$o_left.css(o_left_style);
+				}
 				$o_middle_f.css(o_middle_f_style);
 				$o_middle_b.css(o_middle_b_style);
-				$o_left.css(o_left_style);
 				$o_right.css(o_right_style);
 
 			}
@@ -320,9 +321,12 @@
 						opacity: dir === 'next' ? 0 : self.options.shadowFlip
 					});
 
-					$o_left.css({
-						opacity: dir === 'next' ? self.options.shadowSides : 0
-					});
+					if (self.current != 1) {
+						$o_left.css({
+							opacity: dir === 'next' ? self.options.shadowSides : 0
+						});
+					}
+
 
 					$o_right.css({
 						opacity: dir === 'next' ? 0 : self.options.shadowSides
@@ -331,7 +335,7 @@
 				}
 			}, 25 );
 		},
-		// adds the necessary sides (bb-page) to the layout 
+		// adds the necessary sides (bb-page) to the layout
 		_addSide : function( side, dir ) {
 			var $side;
 
@@ -504,9 +508,9 @@
 				}
 				instance[ options ].apply( instance, args );
 			});
-		} 
+		}
 		else {
-			this.each(function() {	
+			this.each(function() {
 				var instance = $.data( this, 'bookblock' );
 				if ( instance ) {
 					instance._init();

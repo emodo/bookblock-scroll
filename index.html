@@ -62,8 +62,13 @@
     //INIT
     $('#bb-bookblock').bookblock({
       speed: 1000,
-      shadowSides: 0.8,
+      shadowSides: 1,
       shadowFlip: 0.4,
+      onBeforeFlip: function (page) {
+        if (page == 0) {
+          console.log('lalala');
+        }
+      },
       onEndFlip: function(){
         setTimeout(function(){
           $('body').on('mousewheel',  onMouseEvent);
