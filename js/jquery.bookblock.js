@@ -297,7 +297,7 @@
 					} : {
 						transition: 'opacity ' + this.options.speed / 2 + 'ms ' + 'linear' + ' ' + this.options.speed / 2 + 'ms'
 					};
-				if (self.current != 1) {
+				if (self.current > 1) {
 					$o_left.css(o_left_style);
 				}
 				$o_middle_f.css(o_middle_f_style);
@@ -321,7 +321,7 @@
 						opacity: dir === 'next' ? 0 : self.options.shadowFlip
 					});
 
-					if (self.current != 1) {
+					if (self.current > 1) {
 						$o_left.css({
 							opacity: dir === 'next' ? self.options.shadowSides : 0
 						});
